@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Messenger">
+  <title>Уведомления — Messenger</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f19;
+      --card: #151c2c;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --ok: #22c55e;
+      --err: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      width: 100%;
+      max-width: 380px;
+      background: var(--card);
+      border-radius: 22px;
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+    .icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      margin: 0 auto 16px;
+      display: block;
+    }
+    h1 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+    p { font-size: 15px; line-height: 1.45; color: var(--muted); margin-bottom: 20px; }
+    .steps {
+      text-align: left;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .steps ol { padding-left: 18px; }
+    .steps li + li { margin-top: 6px; }
+    button, a.btn {
+      display: block;
+      width: 100%;
+      padding: 14px 18px;
+      border: none;
+      border-radius: 14px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    button:active, a.btn:active { background: var(--accent-hover); }
+    button:disabled { opacity: 0.6; cursor: default; }
+    .secondary {
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .status {
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 1.4;
+      min-height: 20px;
+    }
+    .status.ok { color: var(--ok); }
+    .status.err { color: var(--err); }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <img class="icon" src="/icons/icon-192.png" alt="Messenger">
+    <h1>Уведомления</h1>
+
+    <div id="install-hint" class="hidden">
+      <p>Чтобы получать push-уведомления на iPhone без App Store, добавь эту страницу на экран «Домой»:</p>
+      <div class="steps">
+        <ol>
+          <li>Нажми кнопку <b>«Поделиться»</b> (квадрат со стрелкой) внизу Safari.</li>
+          <li>Выбери <b>«На экран „Домой“»</b> и нажми <b>«Добавить»</b>.</li>
+          <li>Открой появившуюся иконку с экрана «Домой».</li>
+        </ol>
+      </div>
+    </div>
+
+    <div id="pwa-controls" class="hidden">
+      <p>Нажми кнопку ниже, чтобы разрешить уведомления и автоматически привязать их к мессенджеру.</p>
+      <button id="enable-btn" type="button">Включить уведомления</button>
+      <a id="open-app-btn" class="btn secondary hidden" href="#">Передать подписку в мессенджер</a>
+    </div>
+
+    <div id="status" class="status"></div>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

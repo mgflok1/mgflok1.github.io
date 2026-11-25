@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Открытие чата…</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0b0f19;
+      color: #f8fafc;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 24px;
+      text-align: center;
+    }
+    a {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 12px 24px;
+      border-radius: 12px;
+      background: #3b82f6;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <p>Открываем мессенджер…</p>
+    <a id="fallback-link" href="mymessenger://">Открыть чат</a>
+  </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const senderID = params.get("senderID");
+    const targetUrl = senderID
+      ? "mymessenger://openchat?senderID=" + encodeURIComponent(senderID)
+      : "mymessenger://";
+
+    document.getElementById("fallback-link").href = targetUrl;
+    window.location.replace(targetUrl);
+  </script>
+</body>
+</html>
